@@ -1,18 +1,11 @@
-## Feature views-thymeleaf documentation
+# Micronaut + KeyCloak Demo
 
-- [Micronaut Thymeleaf views documentation](https://micronaut-projects.github.io/micronaut-views/latest/guide/index.html#thymeleaf)
+## Running 
 
-- [https://www.thymeleaf.org/](https://www.thymeleaf.org/)
-
-## Feature http-client documentation
-
-- [Micronaut Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-
-## Feature security-jwt documentation
-
-- [Micronaut Micronaut Security JWT documentation](https://micronaut-projects.github.io/micronaut-security/latest/guide/index.html)
-
-## Feature security-oauth2 documentation
-
-- [Micronaut Micronaut Security OAuth 2.0 documentation](https://micronaut-projects.github.io/micronaut-security/latest/guide/index.html#oauth)
-
+- Run in terminal: `docker run --publish 8081:8080 -e KEYCLOAK_USER=test -e KEYCLOAK_PASSWORD=test jboss/keycloak:11.0.3`
+- Go to http://localhost:8081/auth/admin/master/console/
+- Create a client with `Access Type` set to `confidential` and `Redirect URL` set to `http://localhost:8080/*`
+- Click `Save` and copy `Client ID` and `Credentials > Secret`
+- Run: `./gradlew assemble`
+- Run: `OAUTH_CLIENT_ID=<your client id> OAUTH_CLIENT_SECRET=<your client secret> java -jar build/libs/micronaut-keycloak-0.1-all.jar`
+- The app is running at http://localhost:8080
